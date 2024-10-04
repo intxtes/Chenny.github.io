@@ -116,6 +116,8 @@
 </body>
     </div>
         <div class="reward - container">
+            <h1>如果您觉得这个网站有对你产生帮助，请支持一下吧！</h1>
+            <img src="/46F279156812A4B54AE2791AFE8A38BF.jpg" alt="微信打赏二维码" width="300" height="400">
         </div>
     </div>
     <p style="text - align: center; margin - top: 20px;">制作人员：陈伊俊</p>
@@ -123,21 +125,27 @@
     <p style="text - align: center; margin - top: 20px;">QQ群：431982412</p>
     </body>
 </body>
-<script>
-    // 检查本地存储中是否存在访问计数
-    if (localStorage.getItem('visitCount')) {
-        // 如果存在，获取当前计数并加1
-        var count = parseInt(localStorage.getItem('visitCount')) + 1;
-        localStorage.setItem('visitCount', count);
-    } else {
-        // 如果不存在，初始化为1
-        localStorage.setItem('visitCount', 1);
-    }
-    // 在页面上显示访问计数
-    var visitCountElement = document.createElement('p');
-    visitCountElement.textContent = '本网站访问次数：' + localStorage.getItem('visitCount');
-    document.body.appendChild(visitCountElement);
-</script>
+
 </body>
+</div>
+    <div class="reward - container">
+    </div>
+</div>
+<p style="text - align: center; margin - top: 20px;">制作人员：陈伊俊</p>
+<p style="text - align: center; margin - top: 20px;">技术支持：VSCode团队、FoskfD(QQ名，QQ号：3828638473)、GitHub所有团队</p>
+<p style="text - align: center; margin - top: 20px;">QQ群：431982412</p>
+</body>
+</body>
+<script>
+if (localStorage.getItem('visitCount')) {
+    var count = parseInt(localStorage.getItem('visitCount')) + 1;
+    localStorage.setItem('visitCount', count);
+} else {
+    localStorage.setItem('visitCount', 1);
+}
+var visitCountElement = document.createElement('p');
+visitCountElement.textContent = '本网站个人访问次数：' + localStorage.getItem('visitCount');
+document.body.appendChild(visitCountElement);
+</script>
 
 </html>
