@@ -97,5 +97,16 @@
     <p style="color: darkorchid">网站主作人员：(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  网站辅助人员：㍿ 下载站文件：XDFBoom团队</p>
     <p style="color: darkorchid">技术支持：GitHub & openfrp 宣传支持：CSDN博客 对赞助及支持者鸣谢！</p>
 </body>
+<script>
+if (localStorage.getItem('visitCount')) {
+    var count = parseInt(localStorage.getItem('visitCount')) + 1;
+    localStorage.setItem('visitCount', count);
+} else {
+    localStorage.setItem('visitCount', 1);
+}
+var visitCountElement = document.createElement('p');
+visitCountElement.textContent = '本网站个人访问次数：' + localStorage.getItem('visitCount');
+document.body.appendChild(visitCountElement);
+</script>
 
 </html>
