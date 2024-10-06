@@ -149,46 +149,42 @@
     <p style="text - align: center; margin - top: 20px;">QQ群：431982412</p>
     </body>
 </body>
-        
-<div class="github-badge-big">
-<span class="badge-subject"><i class="fa fa-clock-o"></i> 🕒本站已正常运行 </span
-><span class="badge-value bg-apricots"
-><span id="blog_running_days" class="odometer odometer-auto-theme"></span>
-天
-<span id="blog_running_hours" class="odometer odometer-auto-theme"></span> 小时
-<span id="blog_running_mins" class="odometer odometer-auto-theme"></span> 分钟
-<span id="blog_running_secs" class="odometer odometer-auto-theme"></span>
-秒
-<span id="blog_running_msecs" class="odometer odometer-auto-theme"></span>
-毫秒
-</span
->
- <script no-pjax="">
-var blog_running_days = document.getElementById("blog_running_days");
-var blog_running_hours = document.getElementById("blog_running_hours");
-var blog_running_mins = document.getElementById("blog_running_mins");
-var blog_running_secs = document.getElementById("blog_running_secs");
-var blog_running_msecs = document.getElementById("blog_running_msecs");
-function refresh_blog_running_time() {
-var time = new Date() - new Date(2024, 10, 3, 0, 0, 0, 000);
-var d = parseInt(time / 24 / 60 / 60 / 1000);
-var h = parseInt((time % (24 * 60 * 60 * 1000)) / 60 / 60 / 1000);
-var m = parseInt((time % (60 * 60 * 1000)) / 60 / 1000);
-var s = parseInt((time % (60 * 1000)) / 1000);
-var ms = parseInt((time % (1000 * 1)) / 1);
-blog_running_days.innerHTML = d;
-blog_running_hours.innerHTML = h;
-blog_running_mins.innerHTML = m;
-blog_running_secs.innerHTML = s;
-blog_running_msecs.innerHTML = ms;
-}
-refresh_blog_running_time();
-if (typeof bottomTimeIntervalHasSet == "undefined") {
-var bottomTimeIntervalHasSet = true;
-setInterval(function () {
-refresh_blog_running_time();
-}, 1);
-}
-</script>
+
+<div class="github - badge - big">
+    <span class="badge - subject"><i class="fa fa - clock - o"></i> 🕒本站已正常运行 </span>
+    <span class="badge - value bg - apricots">
+        <span id="blog_running_days" class="odometer odometer - auto - theme"></span>天
+        <span id="blog_running_hours" class="odometer odometer - auto - theme"></span>小时
+        <span id="blog_running_mins" class="odometer odometer - auto - theme"></span>分钟
+        <span id="blog_running_secs" class="odometer odometer - auto - theme"></span>秒
+        <span id="blog_running_msecs" class="odometer odometer - auto - theme"></span>毫秒
+    </span>
+    <script no - pjax="">
+        var blog_running_days = document.getElementById("blog_running_days");
+        var blog_running_hours = document.getElementById("blog_running_hours");
+        var blog_running_mins = document.getElementById("blog_running_mins");
+        var blog_running_secs = document.getElementById("blog_running_secs");
+        var blog_running_msecs = document.getElementById("blog_running_msecs");
+        function refresh_blog_running_time() {
+            var time = new Date() - new Date(2024, 9, 3, 0, 0, 0, 0);
+            var d = parseInt(time / 24 / 60 / 60 / 1000);
+            var h = parseInt((time % (24 * 60 * 60 * 1000)) / 60 / 60 / 1000);
+            var m = parseInt((time % (60 * 60 * 1000)) / 60 / 1000);
+            var s = parseInt((time % (60 * 1000)) / 1000);
+            var ms = parseInt((time % (1000 * 1)) / 1);
+            blog_running_days.innerHTML = d;
+            blog_running_hours.innerHTML = h;
+            blog_running_mins.innerHTML = m;
+            blog_running_secs.innerHTML = s;
+            blog_running_msecs.innerHTML = ms;
+        }
+        refresh_blog_running_time();
+        if (typeof bottomTimeIntervalHasSet == "undefined") {
+            var bottomTimeIntervalHasSet = true;
+            setInterval(function () {
+                refresh_blog_running_time();
+            }, 1);
+        }
+    </script>
 
 </html>
