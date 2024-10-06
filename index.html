@@ -137,16 +137,58 @@
         </div>
 </body>
 
-<script>
-if (localStorage.getItem('visitCount')) {
-    var count = parseInt(localStorage.getItem('visitCount')) + 1;
-    localStorage.setItem('visitCount', count);
-} else {
-    localStorage.setItem('visitCount', 1);
+</body>
+    </div>
+        <div class="reward - container">
+            <h1>如果您觉得这个网站有对你产生帮助，请支持一下吧！</h1>
+            <img src="/46F279156812A4B54AE2791AFE8A38BF.jpg" alt="微信打赏二维码" width="300" height="400">
+        </div>
+    </div>
+    <p style="text - align: center; margin - top: 20px;">网站制作人员：陈伊俊（QQ:2501113185）、林（QQ:757009986）</p>
+    <p style="text - align: center; margin - top: 20px;">技术支持：VSCode团队、GitHub所有团队、FoskfD(QQ名，QQ号：3828638473)</p>
+    <p style="text - align: center; margin - top: 20px;">QQ群：431982412</p>
+    </body>
+</body>
+        
+<div class="github-badge-big">
+<span class="badge-subject"><i class="fa fa-clock-o"></i> 🕒本站已正常运行 </span
+><span class="badge-value bg-apricots"
+><span id="blog_running_days" class="odometer odometer-auto-theme"></span>
+天
+<span id="blog_running_hours" class="odometer odometer-auto-theme"></span> 小时
+<span id="blog_running_mins" class="odometer odometer-auto-theme"></span> 分钟
+<span id="blog_running_secs" class="odometer odometer-auto-theme"></span>
+秒
+<span id="blog_running_msecs" class="odometer odometer-auto-theme"></span>
+毫秒
+</span
+>
+ <script no-pjax="">
+var blog_running_days = document.getElementById("blog_running_days");
+var blog_running_hours = document.getElementById("blog_running_hours");
+var blog_running_mins = document.getElementById("blog_running_mins");
+var blog_running_secs = document.getElementById("blog_running_secs");
+var blog_running_msecs = document.getElementById("blog_running_msecs");
+function refresh_blog_running_time() {
+var time = new Date() - new Date(2024, 10, 3, 0, 0, 0, 000);
+var d = parseInt(time / 24 / 60 / 60 / 1000);
+var h = parseInt((time % (24 * 60 * 60 * 1000)) / 60 / 60 / 1000);
+var m = parseInt((time % (60 * 60 * 1000)) / 60 / 1000);
+var s = parseInt((time % (60 * 1000)) / 1000);
+var ms = parseInt((time % (1000 * 1)) / 1);
+blog_running_days.innerHTML = d;
+blog_running_hours.innerHTML = h;
+blog_running_mins.innerHTML = m;
+blog_running_secs.innerHTML = s;
+blog_running_msecs.innerHTML = ms;
 }
-var visitCountElement = document.createElement('p');
-visitCountElement.textContent = '本网站个人访问次数：' + localStorage.getItem('visitCount');
-document.body.appendChild(visitCountElement);
+refresh_blog_running_time();
+if (typeof bottomTimeIntervalHasSet == "undefined") {
+var bottomTimeIntervalHasSet = true;
+setInterval(function () {
+refresh_blog_running_time();
+}, 1);
+}
 </script>
 
 </html>
