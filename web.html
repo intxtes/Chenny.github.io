@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>有趣网址分享站</title>
+    <link rel="icon" href="/bitbug_favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 28px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .download-container div {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .reward-container h1 {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .github-badge-big {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .badge-subject {
+            font-size: 16px;
+            color: #777;
+            margin-right: 20px;
+        }
+
+        .badge-value {
+            font-size: 18px;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body background="/index_ background.png"
+    style="background-repeat:no-repeat
+    background-attachment:fixed;
+    background-size:100% 100%; ">
+</body>
+
+    <h1>欢迎来到 chenny 的有趣网址分享站</h1>
+    <p style="text-align: center; color: red;">注意：进入网站错误请联系网站制作人员！以下网站不是 chenny（QQ 名）制作，仅供学习交流使用！</p>
+    <h2>AI网站</h2>
+    <div class="download-container">
+        <div>
+            <h3>bolt.new</h3>
+            <p>网站描述：这是一个很棒的 AI 网站，结合了 AI 与 WebContainers 技术的强大开发平台，允许用户快速搭建并开发各种类型的全栈应用。它的主要特点是无需复杂的开发环境配置，你可以直接通过网页端在线完成从编写代码到部署应用的所有步骤，极大地方便了开发过程。Bolt․new 旨在为开发者提供一个轻量级、基于浏览器的全栈开发环境。你可以通过简单的提示创建、编辑、运行和部署复杂的全栈应用，而且全部在浏览器中完成整个开发流程，不需要安装额外的软件。这意味着，你只要有一个浏览器，就能创建、编辑、运行、调试并发布完整的应用程序。</p>
+            <a href="https://bolt.new/">点击进入</a>
+        </div>
+    </div>
+    <div class="reward-container">
+        <h1>如果您觉得这个网站有对你产生帮助，请支持一下吧，你的支持是我更新网站的动力！</h1>
+        <img src="/46F279156812A4B54AE2791AFE8A38BF.jpg" alt="微信打赏二维码" width="300" height="400">
+    </div>
+    <p style="text-align: center; margin-top: 20px;">网站制作人员：陈伊俊（QQ 名:chenny;QQ:2501113185）、林（QQ 名:林;QQ:757009986）</p>
+    <p style="text-align: center; margin-top: 20px;">技术支持：VSCode 团队、GitHub 所有团队、FoskfD(QQ：3828638473)</p>
+    <p style="text-align: center; margin-top: 20px;">QQ 群：431982412</p>
+    <div class="download-container">
+        <div class="github-badge-big">
+            <span class="badge-subject"><i class="fa fa-clock-o"></i> 🕒本网站已正常运行 </span>
+            <span class="badge-value bg-apricots">
+                <span id="blog_running_days" class="odometer odometer-auto-theme"></span>天
+                <span id="blog_running_hours" class="odometer odometer-auto-theme"></span>小时
+                <span id="blog_running_mins" class="odometer odometer-auto-theme"></span>分钟
+                <span id="blog_running_secs" class="odometer odometer-auto-theme"></span>秒
+                <span id="blog_running_msecs" class="odometer odometer-auto-theme"></span>毫秒
+            </span>
+            <script no-pjax="">
+                var blog_running_days = document.getElementById("blog_running_days");
+                var blog_running_hours = document.getElementById("blog_running_hours");
+                var blog_running_mins = document.getElementById("blog_running_mins");
+                var blog_running_secs = document.getElementById("blog_running_secs");
+                var blog_running_msecs = document.getElementById("blog_running_msecs");
+                function refresh_blog_running_time() {
+                    var time = new Date() - new Date(2024, 9, 3, 0, 0, 0, 0);
+                    var d = parseInt(time / 24 / 60 / 60 / 1000);
+                    var h = parseInt((time % (24 * 60 * 60 * 1000)) / 60 / 60 / 1000);
+                    var m = parseInt((time % (60 * 60 * 1000)) / 60 / 1000);
+                    var s = parseInt((time % (60 * 1000)) / 1000);
+                    var ms = parseInt((time % (1000 * 1)) / 1);
+                    blog_running_days.innerHTML = d;
+                    blog_running_hours.innerHTML = h;
+                    blog_running_mins.innerHTML = m;
+                    blog_running_secs.innerHTML = s;
+                    blog_running_msecs.innerHTML = ms;
+                }
+                refresh_blog_running_time();
+                if (typeof bottomTimeIntervalHasSet == "undefined") {
+                    var bottomTimeIntervalHasSet = true;
+                    setInterval(function () {
+                        refresh_blog_running_time();
+                    }, 1);
+                }
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
