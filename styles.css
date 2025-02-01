@@ -1,0 +1,205 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #6a11cb 50%, #ff6f61 75%, #ffcc5c 100%);
+    background-size: 1920px 1080px;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: transparent;
+    color: #fff;  /* 改为白色文字 */
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: none;  /* 移除阴影 */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    animation: fadeInDown 1s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* 添加文字阴影增加可读性 */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;  /* 改为白色文字 */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li a:hover {
+    color: #ffcc5c;  /* 悬停时变为亮色 */
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.section {
+    padding: 2.5rem 0;
+    background-color: transparent;
+    margin: 1rem 0;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    color: #fff;
+    transform-origin: center; /* 确保从中心放大 */
+}
+
+.section h2 {
+    margin-bottom: 1.5rem;
+    color: #fff; /* 改为白色标题 */
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加文字阴影增加可读性 */
+}
+
+.section p, .section ul {
+    color: #fff; /* 确保段落和列表文字为白色 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* 添加轻微文字阴影 */
+}
+
+.section a {
+    color: #ffcc5c; /* 链接颜色改为亮色 */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.section a:hover {
+    color: #fff; /* 悬停时变为白色 */
+}
+
+/* 修改悬停效果为放大 */
+.section:hover {
+    transform: scale(1.0); /* 增加放大比例到1.05倍 */
+    background-color: transparent !important;
+}
+
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; /* 将页脚推到底部 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 移除页脚的阴影和边框效果 */
+footer .container {
+    border: none;
+    box-shadow: none;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header, .section, footer {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.welcome-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.welcome-text h2 {
+    color: #ffcc5c;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.welcome-text h2.bounce {
+    animation: bounce 0.5s ease;
+}
+
+.context-menu {
+    display: none;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 150px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.context-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.context-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.context-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+} 
