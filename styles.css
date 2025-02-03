@@ -1,0 +1,471 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/background.png'); /* 设置背景图像 */
+    background-size: cover; /* 背景图像覆盖整个区域 */
+    background-position: center; /* 背景图像居中 */
+    background-attachment: fixed; /* 背景固定不动 */
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: transparent;
+    color: #fff;  /* 改为白色文字 */
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: none;  /* 移除阴影 */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    animation: fadeInDown 1s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* 添加文字阴影增加可读性 */
+}
+
+/* 导航栏样式 */
+nav {
+    margin-top: 1rem;
+    position: relative; /* 使下划线相对于导航栏定位 */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+nav a:hover {
+    color: #ffcc5c;
+    transform: translateY(-2px);
+}
+
+/* 添加金色下划线 */
+nav::after {
+    content: '';
+    display: block;
+    width: 100%; /* 下划线宽度为100% */
+    height: 2px; /* 下划线高度 */
+    background: #ffcc5c; /* 金色 */
+    position: absolute; /* 绝对定位 */
+    bottom: -5px; /* 距离导航栏底部5px */
+    left: 0; /* 从左侧开始 */
+}
+
+/* 导航栏下划线效果 */
+nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffcc5c;
+    transition: width 0.3s ease;
+    position: relative;
+    bottom: -2px; /* 调整下划线与文字的距离 */
+    left: 0;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* 当前页面指示器 */
+nav a.active {
+    color: #ffcc5c;
+}
+
+nav a.active::after {
+    width: 100%;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.section {
+    padding: 2.5rem 0;
+    background-color: transparent;
+    margin: 1rem 0;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    color: #fff;
+    transform-origin: center; /* 确保从中心放大 */
+}
+
+.section h2 {
+    margin-bottom: 1.5rem;
+    color: #fff; /* 改为白色标题 */
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加文字阴影增加可读性 */
+}
+
+.section p, .section ul {
+    color: #fff; /* 确保段落和列表文字为白色 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* 添加轻微文字阴影 */
+}
+
+.section a {
+    color: #ffcc5c; /* 链接颜色改为亮色 */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.section a:hover {
+    color: #fff; /* 悬停时变为白色 */
+}
+
+/* 修改悬停效果为放大 */
+.section:hover {
+    transform: scale(1.0); /* 增加放大比例到1.05倍 */
+    background-color: transparent !important;
+}
+
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; /* 将页脚推到底部 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 移除页脚的阴影和边框效果 */
+footer .container {
+    border: none;
+    box-shadow: none;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header, .section, footer {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    display: none; /* 隐藏背景 */
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.welcome-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.welcome-text h2 {
+    color: #ffcc5c;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.welcome-text h2.bounce {
+    animation: bounce 0.5s ease;
+}
+
+/* 返回按钮样式 */
+.back-button {
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff; /* 默认文字颜色为白色 */
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.3s ease; /* 仅过渡文字颜色 */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn:hover {
+    color: #ffcc5c; /* 悬停时文字颜色变为金色 */
+    background-color: rgba(255, 255, 255, 0.1); /* 保持背景颜色不变 */
+    transform: none; /* 移除默认的移动效果 */
+    box-shadow: none; /* 移除默认的阴影效果 */
+}
+
+/* 页面切换相关样式 */
+.page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px);
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 博客和关于我栏目样式 */
+#blog, #about {
+    color: #fff;
+}
+
+#blog h2, #about h2 {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#blog p, #about p {
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#blog a, #about a {
+    color: #ffcc5c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#blog a:hover, #about a:hover {
+    color: #fff;
+}
+
+/* 标题图标样式 */
+.header-logo {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.1);
+}
+
+.post {
+    position: relative; /* 使子元素可以绝对定位 */
+    margin-bottom: 20px; /* 设置下边距为20px */
+    border: 1px solid white; /* 添加白色边框 */
+    padding: 15px; /* 添加内边距 */
+    border-radius: 8px; /* 添加圆角 */
+    background-color: rgba(255, 255, 255, 0.1); /* 可选：添加背景色 */
+}
+
+.delete-icon {
+    position: absolute; /* 绝对定位 */
+    right: 10px; /* 距离右边10px */
+    bottom: 10px; /* 距离底部10px */
+    width: 20px; /* 图标宽度 */
+    height: 20px; /* 图标高度 */
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+}
+
+.edit-icon {
+    position: absolute; /* 绝对定位 */
+    right: 40px; /* 距离右边40px，确保与删除图标不重叠 */
+    bottom: 10px; /* 距离底部10px */
+    width: 20px; /* 图标宽度 */
+    height: 20px; /* 图标高度 */
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+}
+
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位 */
+    z-index: 1000; /* 确保在最上层 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全屏 */
+    height: 100%; /* 全屏 */
+    overflow: auto; /* 启用滚动 */
+    background-color: rgba(0, 0, 0, 0.7); /* 更深的半透明背景 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.95); /* 白色背景，稍微透明 */
+    margin: 15% auto; /* 15% 从顶部，居中 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 宽度 */
+    max-width: 400px; /* 最大宽度 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 添加更明显的阴影 */
+    animation: fadeIn 0.3s; /* 添加淡入动画 */
+    transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+.modal-content:hover {
+    transform: scale(1.02); /* 悬停时轻微放大 */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000; /* 悬停时颜色 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* 添加过渡效果 */
+}
+
+#confirm-delete {
+    background-color: #f44336; /* 红色 */
+    color: white;
+}
+
+#confirm-delete:hover {
+    background-color: #d32f2f; /* 深红色 */
+    transform: scale(1.05); /* 悬停时放大 */
+}
+
+#cancel-delete {
+    background-color: #4CAF50; /* 绿色 */
+    color: white;
+}
+
+#cancel-delete:hover {
+    background-color: #388E3C; /* 深绿色 */
+    transform: scale(1.05); /* 悬停时放大 */
+}
+
+/* 编辑页面样式 */
+#edit-form {
+    background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    padding: 20px;
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    margin-top: 20px; /* 顶部间距 */
+}
+
+#edit-form label {
+    display: block; /* 标签块级显示 */
+    margin-bottom: 5px; /* 标签与输入框之间的间距 */
+    color: #fff; /* 标签颜色 */
+}
+
+#edit-form input[type="text"],
+#edit-form textarea {
+    width: 100%; /* 100% 宽度 */
+    padding: 10px; /* 内边距 */
+    margin-bottom: 15px; /* 输入框之间的间距 */
+    border: 1px solid #ccc; /* 边框颜色 */
+    border-radius: 5px; /* 圆角 */
+    background-color: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    color: #fff; /* 输入框文字颜色 */
+    transition: border-color 0.3s; /* 边框颜色过渡 */
+}
+
+#edit-form input[type="text"]:focus,
+#edit-form textarea:focus {
+    border-color: #ffcc5c; /* 聚焦时边框颜色 */
+    outline: none; /* 移除默认轮廓 */
+}
+
+#edit-form button {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 15px; /* 内边距 */
+    border: none; /* 无边框 */
+    border-radius: 5px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+    transition: background-color 0.3s; /* 背景颜色过渡 */
+}
+
+#edit-form button:hover {
+    background-color: #388E3C; /* 悬停时深绿色 */
+}
+
+/* 删除背景相关的样式 */
+.fixed-background {
+    position: fixed; /* 固定背景 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 确保背景在内容后面 */
+    background-image: url('images/background.png'); /* 设置背景图像 */
+    background-size: cover; /* 背景图像覆盖整个区域 */
+    background-position: center; /* 背景图像居中 */
+    background-attachment: fixed; /* 背景固定不动 */
+}
+
+.circular-logo {
+    width: 30px; /* 根据需要调整大小 */
+    height: 30px; /* 根据需要调整大小 */
+    border-radius: 50%; /* 使图像呈现为圆形 */
+    display: block; /* 使图像在新行中显示 */
+    margin: 0 auto; /* 居中图像 */
+}
