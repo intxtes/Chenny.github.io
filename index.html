@@ -3,80 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20000Hz 个人博客</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" href="images/favicon-16x16.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
+    <title>唐人协会</title>
+    <style>
+        :root {
+            --indigo-600: #4F46E5;
+            --indigo-50: #f8fafc;
+            --gray-100: #F3F4F6;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            margin: 0;
+            padding: 0;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--indigo-600);
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-800);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--indigo-600);
+        }
+
+        .hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(to right, #EEF2FF, #F5F3FF);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--indigo-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--indigo-600);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #4338CA;
+        }
+
+        .about {
+            padding: 4rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--indigo-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background-color: #EEF2FF;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--indigo-600);
+        }
+
+        .values {
+            padding: 4rem 0;
+            background-color: #F9FAFB;
+        }
+
+        .values h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--indigo-600);
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team {
+            padding: 4rem 0;
+        }
+
+        .team h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--indigo-600);
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .member-card {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            color: var(--indigo-600);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact {
+            padding: 4rem 0;
+            background-color: #F9FAFB;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--indigo-600);
+            margin-bottom: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.75rem;
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--gray-600);
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--indigo-600);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--indigo-600);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="fixed-background"></div>
-    <div class="content">
-        <div id="content">
-            <header>
-                <div class="container">
-                    <h1><a href="#home"><img src="images/favicon-16x16.png" alt="Logo" class="header-logo"></a> 20000Hz 个人博客</h1>
-                    <nav>
-                        <ul>
-                            <li><a href="#home" class="nav-link">首页</a></li>
-                            <li><a href="#blog" class="nav-link">博客</a></li>
-                            <li><a href="#about" class="nav-link">关于我</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-
-            <main>
-                <section id="home" class="page active">
-                    <div class="welcome-text">
-                        <h2 id="welcome-message">欢迎访问我的博客</h2>
-                    </div>
-                </section>
-
-                <section id="blog" class="page">
-                    <div class="container">
-                        <h2>最新文章</h2>
-                        <div class="post">
-                            <h3><a href="blog/3.html">我的第三篇博客</a></h3>
-                            <div class="post-meta">发布于：2025年2月3日</div>
-                            <p>这是我的第三篇博客，感谢大家的支持与关注！</p>
-                        </div>
-                        <div class="post">
-                            <h3><a href="blog/2.html">我的第二篇博客</a></h3>
-                            <div class="post-meta">发布于：2025年2月2日</div>
-                            <p>这是我的第二篇博客，感谢大家的支持！</p>
-                        </div>
-                        <div class="post">
-                            <h3><a href="blog/1.html">我的第一篇博客</a></h3>
-                            <div class="post-meta">发布于：2025年2月1日</div>
-                            <p>这是我的第一篇博客，欢迎来到我的个人空间！</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="about" class="page">
-                    <div class="container">
-                        <h2>关于我</h2>
-                        <img src="images/favicon-16x16.png" alt="Logo" class="circular-logo">
-                        <p>你好，我是20000Hz(QQ名：1085073653)</p>
-                        <p>
-                            你可以在这里找到我的作品：
-                            <a href="https://space.bilibili.com/3493093114382435" target="_blank">BiliBili</a> |
-                            <a href="https://afdian.com/a/20000Hz" target="_blank">爱发电</a>
-                        </p>
-                    </div>
-                </section>
-            </main>
-
-            <footer>
-                <div class="container">
-                    <p>&copy; 2025 20000Hz. All rights reserved.</p>
-                </div>
-            </footer>
+    <header>
+        <div class="container nav">
+            <div class="nav-logo">
+                <svg class="value-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+                唐人协会
+            </div>
+            <nav class="nav-links">
+                <a href="#about">关于我们</a>
+                <a href="#values">核心价值</a>
+                <a href="#team">协会成员</a>
+                <a href="#contact">联系我们</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <script src="script.js"></script>
+    <section class="hero">
+        <div class="container">
+            <h1>心之所向，也必达焉</h1>
+            <p>一个由一些初中生组成的协会</p>
+            <a href="#team" class="btn-primary">了解我们的协会</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>我们的故事</h2>
+                    <p>起因：</p>
+                    <p>虚拟的村庄</p>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">15</div>
+                            <div>唐民</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div>唐度满意度</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="position: relative;">
+                        <div style="position: absolute; inset: 0; background-color: #C7D2FE; border-radius: 1.5rem; transform: rotate(3deg) scale(0.95);"></div>
+                        <img src="https://placehold.co/600x400/4F46E5/FFFFFF?text=It's+OK!" alt="协会协作" style="position: relative; border-radius: 1.5rem;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="values">
+        <div class="container">
+            <h2>我们的核心价值</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <svg class="value-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="value-title">“唐”度超标</div>
+                    <div class="value-description">这里每一个唐民都很唐，唐到你无法想象</div>
+                </div>
+                <div class="value-card">
+                    <svg class="value-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="value-title">“互相帮助”</div>
+                    <div class="value-description">加了引号，都知道什么意思吧......</div>
+                </div>
+                <div class="value-card">
+                    <svg class="value-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="value-title">"和谐友爱"</div>
+                    <div class="value-description">不知道该怎么写了......</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2>我们的协会</h2>
+            <h3>管理人员：</h3>
+            <div class="team-grid">
+                <div class="member-card">
+                    <img src="https://placehold.co/300x300/4F46E5/FFFFFF?text=WY" alt="王一" class="member-image">
+                    <div class="member-info">
+                        <div class="member-name">王一</div>
+                        <div class="member-role">唐人街唐长</div>
+                        <div>管理唐人街唐民</div>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://placehold.co/300x300/4F46E5/FFFFFF?text=MJ" alt="姚明君" class="member-image">
+                    <div class="member-info">
+                        <div class="member-name">姚明君</div>
+                        <div class="member-role">唐人街副唐长</div>
+                        <div>帮助唐人街唐长（王一）管理唐人街唐民</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-card">
+                <h2>加入我们</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p>我们的位置：保密！</p>
+                        <p>电话：+86 11451410086</p>
+                        <p>邮箱：保密！</p>
+                        <div class="social-icons">
+                            <a href="#"><svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.992-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.092.11.107.212.083.344-.062.34-.373 1.177-.416 1.302-.103.306-.337.498-.662.498-.74 0-1.275-.916-1.275-2.064 0-1.909 1.324-3.736 4.445-3.736 2.637 0 4.18 1.664 4.18 3.95 0 2.727-1.737 4.86-4.47 4.86-.735 0-1.404-.336-1.725-.828l-.007-.014c-.483.908-1.621 2.76-3.774 2.76-2.776 0-4.787-2.452-4.787-5.449 0-3.587 2.643-6.65 6.67-6.65 3.364 0 5.825 2.32 5.825 5.48 0 3.495-2.278 6.355-5.647 6.355-.312 0-.727-.049-1.124-.147.767-2.227 2.467-3.644 4.461-3.644 2.569 0 4.574 2.073 4.574 4.88 0 3.399-2.893 5.577-6.313 5.577-4.392 0-7.495-3.03-7.495-6.956 0-3.017 1.73-5.256 4.06-5.256 1.149 0 2.162.49 2.733 1.213.276-.552.832-1.213 1.691-1.213.158 0 .322.016.486.046 2.644-1.056 4.492-3.743 4.492-6.857 0-4.283-3.48-7.763-7.763-7.763z"/></svg></a> 
+                            <a href="#"><svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17c-.552 0-1-.448-1-1s.448-1 1-1 1 .448 1 1-.448 1-1 1zm6.816-7.816c-1.023 0-1.848.825-1.848 1.848 0 1.024.825 1.849 1.848 1.849 1.024 0 1.849-.825 1.849-1.849 0-1.023-.825-1.848-1.849-1.848zm-5.816 4.816c-1.023 0-1.848.825-1.848 1.848 0 1.024.825 1.849 1.848 1.849 1.024 0 1.849-.825 1.849-1.849 0-1.023-.825-1.848-1.849-1.848zm-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3zm9 3c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3z"/></svg></a>
+                            <a href="#"><svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        <button type="submit" class="btn-primary">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-</html> 
+</html>
