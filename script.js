@@ -200,13 +200,13 @@ if (isDarkMode) {
 // 随机切换header背景图片
 // 预加载图片数组
 const backgroundImages = [
-    'BG/01.jpg',
-    'BG/02.jpg',
-    'BG/03.jpg',
-    'BG/04.jpg',
-    'BG/05.jpg',
-    'BG/06.jpg',
-    'BG/07.jpg'
+    '01.jpg',
+    '02.jpg',
+    '03.jpg',
+    '04.jpg',
+    '05.jpg',
+    '06.jpg',
+    '07.jpg'
 ];
 
 // 已预加载的图片缓存
@@ -429,8 +429,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const siteList = category.querySelector('.site-list');
         const categoryId = category.querySelector('h2 span').textContent;
         
-        // 应用保存的状态
-        if (collapsedCategories[categoryId]) {
+        // 应用保存的状态，默认为折叠
+        if (collapsedCategories[categoryId] !== false) {
             btn.classList.add('collapsed');
             siteList.classList.add('collapsed');
         }
