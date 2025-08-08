@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>csp-j笔记</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #444;
+            color: white;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 网站头部 -->
+    <header>
+        <h1>csp-j</h1>
+        <h1>知识点总结</h1>
+    </header>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            
+            <li><a href="javascript:void(0);" onclick="openNotePage()">笔记</a></li>
+            <li><a href="javascript:void(0);" onclick="openNewPage()">题目</a></li>
+        </ul>
+    </nav>
+    <!-- 网站主体内容 -->
+    <main id="mainContent">
+        <p style="color:"></p>
+
+        <p style="color:"></p>
+<h2>图论</h2>
+图是由顶点和边构成的
+
+顶点连边的数量是点的度数
+
+<h2>图的术语</h2>
+<p style="color:red">权值</p>每一条边的距离
+<p style="color:red">回路</p>起点和终点相同的路径可称为“环”
+<p style="color:red">重边</p>两个顶点中间不止一条边
+<p style="color:red">自环</p>自己到自己的边
+<p style="color:red">简单图</p>无重边和自环
+## 图的分类
+1.有向图和无有向图
+<h2>图的术语</h2>
+<p style="color:red">有向图</p>
+  有向图的边是单向的
+  度是与顶点相连的边数
+  出度是箭头指向别的顶点的边数
+  入度是箭头只向自己的边数
+  公式：度=入度+出度
+       入度之和=出度之和=边数
+<p style="color:red">无向图</p>
+  顶点度数之和=n
+  边数=n/2，反之则n=边数*2
+有n 个顶点的无向图至少应该有（n-1）条边才能确保是一个连通图。
+<p style="color:red">2.带权图和正权图</p>
+<p style="color:red">3.完全图</p>
+  <p style="color:green">有向：
+    边数=n*(n-1)</p>
+  <p style="color:green">无向：
+  边数=[n*(n-1)]/2</p>
+
+<p style="color:red">4.连通图和非连通图</p>
+  无向图中，根据任意两个顶点是否连通定义
+ 连通图：从某个顶点出发，可到达其余任意顶点
+  非连通图：从某个顶点出发，至少有一个顶点无法到达
+
+<p style="color:red">5.强联通和非强联通图</p>
+  强连通图：从某个顶点出发，可到达其余任意顶点
+  非强连通图：从某个顶点出发，至少有一个顶点无法到达
+
+<p style="color:red">6.特殊的图</p>
+
+<h2>图的存储</h2>
+1.邻接矩阵
+
+二维数组存储
+
+# 图与树
+n个节点构成树求边：n-1
+
+# 变量
+1.<font color = "blue"> int </font> f(int a,int b){
+  return a+b;
+}
+f(1,2)->3
+
+2.<font color = "blue"> double </font> f(int a,double b){
+  return a+b;
+}
+f(1,2.0)->3.0
+
+3.<font color = "blue"> bool </font>f(int a,int b){
+  return true;
+}
+bool:布尔(判断)
+
+4.<font color = "blue"> void </font>f(int a,int b){
+  cout<<"nfuvbu"<<endl;
+}
+无返回值
+
+# 递归
+自己调用自己
+
+# 输入输出
+cin>>与cout<<相对应
+<p style="color:red">scanf()与printf()相对应</h>
+%是占位
+%d表示整数占位
+%c表示字符占位
+%f表示浮点数占位
+%.2f是取小数点后两位，规则为四舍五入
+%s表示字符串占位
+<font color = "red"></font>
+
+# 值
+a++与++a的区别：
+++a：先自增再计算
+a++：先计算再自增
+
+# 数据类型
+1.int：整数型
+2.double：小数型（双精度浮点型）
+3.float：单精度浮点型
+4.char：字符型
+5.bool：布尔型-> true（真）false（假）
+6.long long：长整型
+7.short：短整型
+8.string：字符串
+9.unsigned：无符号型-> signed：有符号型
+10.const：常数型
+
+# 进制转换
+1.二进制 由0，1组成
+2.单位b,B,w
+<font color = "green"> bit < B < KB < MB < GB < TB </font>
+
+# 位运算
+1.按位与：转为二进制后，按位找，2个都为一，是一，否则为零
+2.按位或：转为二进制后，按位找，1个为一，是一，否则为零
+3.按位异或：转为二进制后，按位找，不同为一，相同为零
+
+# 二分查找
+
+
+<font color = "red">  </font>
+
+
+
+
+<font color = "red">  </font>
+    </main>
+    <!-- 网站页脚 -->
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="#">留句话吧</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script>
+        function openNotePage() {
+            const mainContent = document.getElementById('mainContent').innerHTML;
+            const newWindow = window.open('', '_blank');
+            newWindow.document.open();
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="cn">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>笔记页面</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        header {
+                            background-color: #333;
+                            color: white;
+                            text-align: center;
+                            padding: 20px;
+                        }
+                        nav {
+                            background-color: #444;
+                            color: white;
+                        }
+                        nav ul {
+                            list-style-type: none;
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        nav ul li {
+                            margin: 0 15px;
+                        }
+                        nav ul li a {
+                            color: white;
+                            text-decoration: none;
+                        }
+                        nav ul li a:hover {
+                            text-decoration: underline;
+                        }
+                        main {
+                            padding: 20px;
+                        }
+                        footer {
+                            background-color: #333;
+                            color: white;
+                            text-align: center;
+                            padding: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <header>
+                        <h1>图</h1>
+                    </header>
+                    <nav>
+                        <ul>
+                            <li><a href="javascript:void(0);" onclick="returnToMain()">返回主界面</a></li>
+                        </ul>
+                    </nav>
+                    <main>${mainContent}</main>
+                    <footer>
+                        <nav>
+                            <ul>
+                                <li><a href="#">留句话吧</a></li>
+                            </ul>
+                        </nav>
+                    </footer>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        }
+
+        function openNewPage() {
+            window.open('', '_blank');
+            
+        }
+
+        function returnToMain() {
+            window.close();
+        }
+    </script>
+</body>
+
+</html>
