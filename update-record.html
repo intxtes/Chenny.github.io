@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有趣网址导航更新记录</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="cherry-blossom.css">
+    <link rel="stylesheet" href="loader.css">
+    <link rel="icon" href="TB.png" type="image/png">
+    <style>
+        /* 自定义对话框样式 */
+        .custom-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .dialog-content {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .dialog-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .dialog-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-cancel {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .btn-confirm {
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* 暗色模式适配 */
+        .dark-mode .custom-dialog {
+            background-color: #333;
+            color: white;
+        }
+        .dark-mode .btn-cancel {
+            background-color: #555;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body class="page-loading">
+    <!-- 导航栏 -->
+    <div class="joe_container joe_header_container">
+        <a title="有趣网址导航" class="joe_header__above-logo" href="index.html">
+            <img style="border-radius:4px" src="TB.png" alt="有趣网址导航" onerror="this.src='TB.png'">
+        </a>
+        <nav class="joe_header__above-nav active-animate">
+            <a class="item" href="index.html" title="首页">
+                首页
+            </a>
+            <a class="item current" href="update-record.html" title="有趣网址导航更新记录">
+                有趣网址导航更新记录
+            </a>
+            <a class="item" href="#" title="编程聚集地" id="coding-community">
+                编程聚集地
+            </a>
+        </nav>
+    </div>
+    <!-- 自定义对话框 -->
+    <div class="dialog-overlay" id="dialog-overlay"></div>
+    <div class="custom-dialog" id="custom-dialog">
+        <div class="dialog-content">
+            [编程聚集地]是编程爱好者而创建，在这里所有东西都与[有趣网址导航]创办者无关(包括所有犯罪行为)
+        </div>
+        <div class="dialog-buttons">
+            <button class="dialog-btn btn-cancel" id="btn-cancel">取消</button>
+            <button class="dialog-btn btn-confirm" id="btn-confirm">确定</button>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loader-container" id="loader-container">
+        <div class="absCenter ">
+            <div class="loaderPill">
+                <div class="loaderPill-anim">
+                    <div class="loaderPill-anim-bounce">
+                        <div class="loaderPill-anim-flop">
+                            <div class="loaderPill-pill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loaderPill-floor">
+                    <div class="loaderPill-floor-shadow"></div>
+                </div>
+                <div class="loaderPill-text">正在加载</div>
+            </div>
+        </div>
+    </div>
+    <div class="header-content-no-bg">
+        <h1>有趣网址导航更新记录</h1>
+        <p>记录网站的每一次更新与改进</p>
+    </div>
+
+    <!-- 固定搜索栏容器 -->
+    <div class="main-content">
+    <!-- 静态波浪SVG -->
+    <svg id="EvanWaves" class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 20" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M -160 10 c 30 0 58 -8 88 -8 s 58 8 88 8 s 58 -8 88 -8 s 58 8 88 8 v 10 h -352 Z"></path>
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"></use>
+            <use xlink:href="#gentle-wave" x="48" y="-2"></use>
+            <use xlink:href="#gentle-wave" x="48" y="-4"></use>
+        </g>
+    </svg>
+    <div class="fixed-search-container" id="fixed-search-container">
+        <div class="fixed-search-box">
+            <input type="text" id="fixed-search-input" placeholder="搜索更新记录..." autocomplete="off">
+            <button id="fixed-search-btn">搜索</button>
+            <div class="fixed-search-results" id="fixed-search-results"></div>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜索更新记录..." autocomplete="off">
+        <button id="search-btn">搜索</button>
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <div class="nav-container">
+    </div>
+
+    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <section class="update-section">
+            <h2>更新记录</h2>
+            <div class="update-item">
+                <h3>2025年8月8日 - 新增一些板块，添加加载页面动画</h3>
+                <p>加载页面动画可以随着页面加载完成而消失。</p>
+            </div>
+            <div class="update-item">
+                <h3>2025年8月7日 - 搜索功能优化</h3>
+                <p>可搜索专区版块名来定位网站分布，提升用户体验，修复了部分Bug(侧边栏按钮被搜索栏挡住)；将网页最上方的彩色图片改为每次进入网站时随机一张图片；增加黑暗模式。</p>
+            </div>
+            <div class="update-item">
+                <h3>2025年8月6日 - 添加搜索功能</h3>
+                <p>新增搜索功能，用户可以通过搜索框快速找到需要的网站；添加任务栏，暂时放在网页最上方；添加樱花掉落效果。</p>
+            </div>
+            <div class="update-item">
+                <h3>2025年8月5日 - 网站上线</h3>
+                <p>有趣网址导航正式上线，拥有游戏专区分类，拥有独家侧边栏。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 有趣网址导航 - 发现更好玩的互联网</p>
+            <div class="social-links">
+                <a href="#">微信</a>
+                <a href="#">QQ</a>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script src="cherry-blossom.js"></script>
+
+
+    </script>
+</body>
+</html>

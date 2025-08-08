@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有趣网址导航 - 发现好玩的网站</title>
+    <link rel="icon" href="TB.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="cherry-blossom.css">
+    <link rel="stylesheet" href="loader.css">
+    <style>
+        /* 自定义对话框样式 */
+        .custom-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .dialog-content {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .dialog-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .dialog-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-cancel {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .btn-confirm {
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* 暗色模式适配 */
+        .dark-mode .custom-dialog {
+            background-color: #333;
+            color: white;
+        }
+        .dark-mode .btn-cancel {
+            background-color: #555;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body class="page-loading">
+    <!-- 导航栏 -->
+    <div class="joe_container joe_header_container">
+        <a title="有趣网址导航" class="joe_header__above-logo" href="#">
+            <img style="border-radius:4px" src="TB.png" alt="有趣网址导航" onerror="this.src='TB.png'">
+        </a>
+        <nav class="joe_header__above-nav active-animate">
+            <a class="item current" href="#" title="首页">
+                首页
+            </a>
+            <a class="item" href="update-record.html" title="有趣网址导航更新记录">
+                有趣网址导航更新记录
+            </a>
+            <a class="item" href="#" title="编程聚集地" id="coding-community">
+                编程聚集地
+            </a>
+        </nav>
+    </div>
+    <!-- 自定义对话框 -->
+    <div class="dialog-overlay" id="dialog-overlay"></div>
+    <div class="custom-dialog" id="custom-dialog">
+        <div class="dialog-content">
+            [编程聚集地]是编程爱好者而创建，在这里所有东西都与[有趣网址导航]创办者无关(包括所有犯罪行为)
+        </div>
+        <div class="dialog-buttons">
+            <button class="dialog-btn btn-cancel" id="btn-cancel">取消</button>
+            <button class="dialog-btn btn-confirm" id="btn-confirm">确定</button>
+        </div>
+    </div>
+    <!-- 加载动画 -->
+    <div class="loader-container" id="loader-container">
+        <div class="absCenter ">
+            <div class="loaderPill">
+                <div class="loaderPill-anim">
+                    <div class="loaderPill-anim-bounce">
+                        <div class="loaderPill-anim-flop">
+                            <div class="loaderPill-pill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loaderPill-floor">
+                    <div class="loaderPill-floor-shadow"></div>
+                </div>
+                <div class="loaderPill-text">正在加载</div>
+            </div>
+        </div>
+    </div>
+    <!-- 侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <button class="back-btn">← 返回</button>
+        <h2>分类导航</h2>
+            <ul class="sidebar-menu">
+                <li><a href="#game-sites" class="sidebar-link">游戏专区</a></li>
+                <li><a href="#tool-sites" class="sidebar-link">实用工具</a></li>
+                <li><a href="#programmer-sites" class="sidebar-link">程序员工具</a></li>
+                <li><a href="#generator-sites" class="sidebar-link">趣味生成器</a></li>
+                <li><a href="#ai-sites" class="sidebar-link">AI专区</a></li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-info">
+                <p>© 2025 有趣网址导航</p>
+                <p>发现更好玩的互联网网站</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+    <header>
+        <div class="header-content">
+            <h1 id="main-title">有趣网址导航</h1>
+            <p id="subtitle">发现互联网上最实用的网站，一站式导航服务</p>
+        </div>
+    </header>
+
+    <!-- 固定搜索栏容器 -->
+    <div class="main-content">
+    <!-- 静态波浪SVG -->
+    <svg id="EvanWaves" class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7"></use>
+        </g>
+    </svg>
+    <div class="fixed-search-container" id="fixed-search-container">
+        <div class="fixed-search-box">
+            <input type="text" id="fixed-search-input" placeholder="搜索网站..." autocomplete="off">
+            <button id="fixed-search-btn">搜索</button>
+            <div class="fixed-search-results" id="fixed-search-results"></div>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜索网站..." autocomplete="off">
+        <button id="search-btn">搜索</button>
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <div class="nav-container">
+        <!-- 游戏分类 -->
+        <div class="category">
+            <h2 class="category-title"><span>游戏专区</span><button class="toggle-btn">▼</button></h2>
+            <div class="site-list" id="game-sites">
+                <a href="http://cav.maougame.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🚗</div>
+                    <h3>赛车游戏</h3>
+                    <p>MAOU赛车游戏</p>
+                </a>
+                <a href="https://play2048.co/" class="site-item" target="_blank">
+                    <div class="site-icon">🔢</div>
+                    <h3>2048</h3>
+                    <p>经典数字合成游戏</p>
+                </a>
+                <a href="https://play.m3o.xyz/" class="site-item" target="_blank">
+                    <div class="site-icon">🎮</div>
+                    <h3>M3O游戏平台</h3>
+                    <p>多种在线小游戏集合</p>
+                </a>
+                <a href="https://game.ur1.fun/gomoku/" class="site-item" target="_blank">
+                    <div class="site-icon">⚫⚪</div>
+                    <h3>五子棋</h3>
+                    <p>在线五子棋游戏</p>
+                </a>
+                <a href="http://dapingpang.top/" class="site-item" target="_blank">
+                    <div class="site-icon">🏓</div>
+                    <h3>打乒乓</h3>
+                    <p>在线乒乓球游戏</p>
+                </a>
+                <a href="http://game2.baifumeiba.com/jfcz/" class="site-item" target="_blank">
+                    <div class="site-icon">🎯</div>
+                    <h3>见缝插针</h3>
+                    <p>谁能撑到最后一关！</p>
+                </a>
+                <a href="https://neave.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🎨</div>
+                    <h3>Neave创意</h3>
+                    <p>创意小游戏集合</p>
+                </a>
+                <a href="https://sandspiel.club/" class="site-item" target="_blank">
+                    <div class="site-icon">🏖️</div>
+                    <h3>沙盒元素</h3>
+                    <p>创意沙盒元素模拟游戏</p>
+                </a>
+                <a href="https://www.geo-fs.com/" class="site-item" target="_blank">
+                    <div class="site-icon">✈️</div>
+                    <h3>GeoFS 飞行模拟器</h3>
+                    <p>在线飞行模拟游戏</p>
+                </a>
+                <a href="http://ta.maougame.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🎮</div>
+                    <h3>地下探险队 MAOU</h3>
+                    <p>好玩的像素爬塔类游戏！</p>
+                </a>
+                <a href="https://territorial.io" class="site-item" target="_blank">
+                    <div class="site-icon">🌍</div>
+                    <h3>领土战争</h3>
+                    <p>在线多人策略游戏</p>
+                </a>
+                <a href="https://www.mc.js.cool/" class="site-item" target="_blank">
+                    <div class="site-icon">🏰</div>
+                    <h3>网页我的世界</h3>
+                    <p>浏览器上的Minecraft体验</p>
+                </a>
+                <a href="https://sparebeat.com" class="site-item" target="_blank">
+                    <div class="site-icon">🎵</div>
+                    <h3>节奏游戏</h3>
+                    <p>源自日本的音乐节奏游戏</p>
+                </a>
+                <a href="https://narrow.one/" class="site-item" target="_blank">
+                    <div class="site-icon">🎯</div>
+                    <h3>Narrow One</h3>
+                    <p>有趣的网页射击游戏</p>
+                </a>
+                <a href="https://chvin.github.io/react-tetris/?lan=zh-cn" class="site-item" target="_blank">
+                    <div class="site-icon">🧱</div>
+                    <h3>俄罗斯方块</h3>
+                    <p>经典俄罗斯方块游戏</p>
+                </a>
+                <a href="https://nazo.one-story.cn/" class="site-item" target="_blank">
+                    <div class="site-icon">❓</div>
+                    <h3>解谜游戏QAQ</h3>
+                    <p>烧脑的解谜小游戏，可能运用到电脑知识QAQ</p>
+                </a>
+                <a href="https://krunker.io/" class="site-item" target="_blank">
+                    <div class="site-icon">🔫</div>
+                    <h3>Krunker</h3>
+                    <p>网页第一人称射击游戏</p>
+                </a>
+                <a href="http://taming.io/" class="site-item" target="_blank">
+                    <div class="site-icon">🐺</div>
+                    <h3>Taming.io</h3>
+                    <p>在线宠物养成游戏</p>
+                </a>
+                <a href="https://littlealchemy2.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🧪</div>
+                    <h3>元素合成</h3>
+                    <p>有趣的元素合成游戏</p>
+                </a>
+                <a href="https://www.rainymood.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🌧️</div>
+                    <h3>雨声心情</h3>
+                    <p>放松心情的雨声背景</p>
+                </a>
+                <a href="http://www.minesweeper.cn/" class="site-item" target="_blank">
+                    <div class="site-icon">💣️</div>
+                    <h3>扫雷游戏</h3>
+                    <p>多人在线光标互动游戏</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 工具分类 -->
+        <div class="category">
+            <h2 class="category-title"><span>实用工具</span><button class="toggle-btn">▼</button></h2>
+            <div class="site-list" id="tool-sites">
+                <a href="https://www.convertio.co/zh/" class="site-item" target="_blank">
+                    <div class="site-icon">🔄</div>
+                    <h3>格式转换</h3>
+                    <p>在线文件格式转换工具</p>
+                </a>
+                <a href="https://unsplash.com" class="site-item" target="_blank">
+                    <div class="site-icon">🖼️</div>
+                    <h3>免费图片</h3>
+                    <p>高质量免费图片资源</p>
+                </a>
+                <a href="https://www.diffchecker.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🔍</div>
+                    <h3>文本对比</h3>
+                    <p>在线文本差异对比工具</p>
+                </a>
+                <a href="https://tio.run/" class="site-item" target="_blank">
+                    <div class="site-icon">💻</div>
+                    <h3>代码运行</h3>
+                    <p>在线代码执行环境</p>
+                </a>
+                <a href="https://www.remove.bg/zh/" class="site-item" target="_blank">
+                    <div class="site-icon">🖼️</div>
+                    <h3>背景移除</h3>
+                    <p>在线图片背景移除工具</p>
+                </a>
+                <a href="https://temp-mail.org/zh/" class="site-item" target="_blank">
+                    <div class="site-icon">📧</div>
+                    <h3>临时邮箱</h3>
+                    <p>生成临时邮箱地址</p>
+                </a>
+                <a href="https://docsmall.com/" class="site-item" target="_blank">
+                    <div class="site-icon">📄</div>
+                    <h3>文档处理</h3>
+                    <p>在线文档压缩和转换工具</p>
+                </a>
+                <a href="https://www.lddgo.net/encrypt/morse" class="site-item" target="_blank">
+                    <div class="site-icon">🔒</div>
+                    <h3>摩尔斯电码</h3>
+                    <p>在线摩尔斯电码加密解密</p>
+                </a>
+                <a href="https://petalica-paint.pixiv.dev/index_zh.html" class="site-item" target="_blank">
+                    <div class="site-icon">🎨</div>
+                    <h3>AI上色</h3>
+                    <p>为线稿自动上色工具</p>
+                </a>
+                <a href="http://music.alang.run/" class="site-item" target="_blank">
+                    <div class="site-icon">🎵</div>
+                    <h3>音乐生成器</h3>
+                    <p>在线AI音乐创作工具</p>
+                </a>
+                <a href="https://www.shenfendaquan.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🔣</div>
+                    <h3>神符大全</h3>
+                    <p>特殊符号和表情生成工具</p>
+                </a>
+                <a href="https://fontshow.com" class="site-item" target="_blank">
+                    <div class="site-icon">🔤</div>
+                    <h3>字体展示</h3>
+                    <p>字体预览和下载平台</p>
+                </a>
+            </div>
+        </div>
+
+        
+
+        <!-- 程序员分类 -->
+        <div class="category">
+            <h2 class="category-title"><span>程序员工具</span><button class="toggle-btn">▼</button></h2>
+            <div class="site-list" id="programmer-sites">
+
+                <a href="https://www.csdn.net/" class="site-item" target="_blank">
+                    <div class="site-icon">📚</div>
+                    <h3>CSDN</h3>
+                    <p>中文IT技术社区</p>
+                </a>
+                <a href="https://stackoverflow.com/" class="site-item" target="_blank">
+                    <div class="site-icon">❓</div>
+                    <h3>Stack Overflow</h3>
+                    <p>程序员问答社区</p>
+                </a>
+                <a href="https://developer.mozilla.org/" class="site-item" target="_blank">
+                    <div class="site-icon">📚</div>
+                    <h3>MDN 文档</h3>
+                    <p>Web 开发技术文档</p>
+                </a>
+                <a href="https://www.trae.cn/" class="site-item" target="_blank">
+                    <div class="site-icon">🔧</div>
+                    <h3>Trae</h3>
+                    <p>AI编程助手</p>
+                </a>
+                <a href="https://www.python.org/" class="site-item" target="_blank">
+                    <div class="site-icon">🐍</div>
+                    <h3>Python官网</h3>
+                    <p>Python编程语言官方网站</p>
+                </a>
+                <a href="https://www.softonic.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🔧</div>
+                    <h3>Softonic</h3>
+                    <p>软件下载和评测平台</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 趣味生成器分类 -->
+        <div class="category">
+            <h2 class="category-title"><span>趣味生成器</span><button class="toggle-btn">▼</button></h2>
+            <div class="site-list" id="generator-sites">
+                <a href="https://gba-logo.netlify.app/" class="site-item" target="_blank">
+                    <div class="site-icon">🎮</div>
+                    <h3>GBA Logo生成器</h3>
+                    <p>创建复古风格的GBA游戏封面</p>
+                </a>
+                <a href="https://notwk.london" class="site-item" target="_blank">
+                    <div class="site-icon">🗺️</div>
+                    <h3>Notwk地图生成器</h3>
+                    <p>生成随机地图和世界</p>
+                </a>
+                <a href="https://neal.fun/design-the-next-iphone/" class="site-item" target="_blank">
+                    <div class="site-icon">📱</div>
+                    <h3>iPhone设计器</h3>
+                    <p>设计你理想中的iPhone</p>
+                </a>
+                <a href="https://pixel-me.tokyo/en/" class="site-item" target="_blank">
+                    <div class="site-icon">🎨</div>
+                    <h3>像素头像生成器</h3>
+                    <p>创建像素风格的个人头像</p>
+                </a>
+                <a href="https://huggingface.co/spaces/dalle-mini/dalle-mini" class="site-item" target="_blank">
+                    <div class="site-icon">🖼️</div>
+                    <h3>DALL·E Mini</h3>
+                    <p>AI图像生成器</p>
+                </a>
+                <a href="http://zfbdz.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🔤</div>
+                    <h3>字符生成器</h3>
+                    <p>生成各种特殊字符和符号</p>
+                </a>
+                <a href="https://toolwa.com/relax/" class="site-item" target="_blank">
+                    <div class="site-icon">😌</div>
+                    <h3>放松工具</h3>
+                    <p>放松心情的在线工具</p>
+                </a>
+                <a href="https://strobe.cool/" class="site-item" target="_blank">
+                    <div class="site-icon">✨</div>
+                    <h3>频闪效果生成器</h3>
+                    <p>创建炫酷的频闪视觉效果</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- AI专区 -->
+        <div class="category">
+            <h2 class="category-title"><span>AI专区</span><button class="toggle-btn">▼</button></h2>
+            <div class="site-list" id="ai-sites">
+                <a href="http://45.88.194.92:3080/" class="site-item" target="_blank">
+                    <div class="site-icon">🤖</div>
+                    <h3>ChatGPT镜像网</h3>
+                    <p>国内ChatGPT镜像网</p>
+                </a>
+                <a href="https://www.deepseek.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🐋</div>
+                    <h3>deepseek</h3>
+                    <p>AI大模型服务平台</p>
+                </a>
+                <a href="https://www.doubao.com/" class="site-item" target="_blank">
+                    <div class="site-icon">🤖</div>
+                    <h3>豆包</h3>
+                    <p>字节跳动旗下AI对话助手</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- 回到顶部按钮 -->
+<button id="back-to-top" class="back-to-top-btn">🔝</button>
+
+<footer
+        <div class="footer-content">
+            <p>© 2025 有趣网址导航 - 发现更好玩的互联网</p>
+            <p>网站前期应有许多许多Bug,敬请谅解🙏</p>
+            <p>如果您在使用过程中遇到任何问题或Bug,或者侵权,请联系我:20000Hz.Finish@gmail.com   1085073653@qq.com(还有建议也能发哦!)</p>
+            <div class="social-links">
+
+            </div>
+        </div>  
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 侧边栏切换功能
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const backBtn = document.querySelector('.back-btn');
+
+        // 切换侧边栏显示/隐藏
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+        });
+
+        // 返回按钮功能
+        backBtn.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+        });
+
+        // 点击侧边栏链接后关闭侧边栏（在移动设备上）
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.remove('show');
+                }
+            });
+        });
+
+        // 点击页面其他区域关闭侧边栏
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.sidebar') && !event.target.closest('.sidebar-toggle')) {
+                sidebar.classList.remove('show');
+            }
+        });
+    </script>
+    <script src="cherry-blossom.js"></script>
+</body>
+</html>

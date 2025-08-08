@@ -1,0 +1,179 @@
+/* 侧边栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* 初始隐藏在左侧 */
+    width: 260px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    z-index: 1001; /* 比固定搜索栏层级高 */
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+.sidebar-content {
+    padding: 1.5rem;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #764ba2;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.8rem;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #f5f5f5;
+    color: #764ba2;
+    transform: translateX(5px);
+}
+
+.sidebar-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 1.5rem 0;
+}
+
+.sidebar-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 侧边栏切换按钮 */
+.sidebar-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle:hover {
+    background-color: #623a8c;
+}
+
+/* 侧边栏按钮悬浮文字 */
+.sidebar-toggle::after {
+    content: '展开侧边栏';
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #764ba2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.sidebar-toggle:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 主内容区样式调整 */
+.main-content {
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.show + .main-content {
+    margin-left: 260px;
+}
+
+/* 夜间模式下的侧边栏样式 */
+body.dark-mode .sidebar {
+    background-color: #1e1e1e;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .sidebar h2 {
+    color: #a78bfa;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .sidebar-link {
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar-link:hover {
+    background-color: #2d2d2d;
+    color: #a78bfa;
+}
+
+body.dark-mode .sidebar-divider {
+    background-color: #333;
+}
+
+body.dark-mode .sidebar-info {
+    color: #aaa;
+}
+
+/* 返回按钮样式 */
+.back-btn {
+    background: none;
+    border: none;
+    color: #764ba2;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.back-btn:hover {
+    background-color: #f5f5f5;
+    color: #623a8c;
+}
+
+/* 夜间模式下的返回按钮样式 */
+body.dark-mode .back-btn {
+    color: #a78bfa;
+}
+
+body.dark-mode .back-btn:hover {
+    background-color: #2d2d2d;
+    color: #9370db;
+}

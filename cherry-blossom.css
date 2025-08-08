@@ -1,0 +1,48 @@
+.cherry-blossom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 900; /* 降低z-index避免遮挡重要内容 */
+    overflow: hidden;
+}
+
+/* 移动端樱花优化 */
+@media (max-width: 480px) {
+    .cherry-blossom {
+        transform: scale(0.8); /* 缩小樱花大小 */
+    }
+}
+
+.cherry-blossom {
+    position: absolute;
+    background-color: #ffccd5;
+    border-radius: 100% 0 100% 0;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 夜间模式调整 */
+body.dark-mode .cherry-blossom {
+    background-color: #ff8fab;
+    opacity: 0.6;
+}

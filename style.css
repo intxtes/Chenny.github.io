@@ -1,0 +1,765 @@
+/* 固定搜索栏样式 */
+.fixed-search-container {
+    position: fixed;
+    top: -100px; /* 初始隐藏在顶部上方 */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    z-index: 1000;
+    transition: top 0.3s ease-in-out;
+}
+.fixed-search-container.show {
+    top: 0; /* 显示时移动到顶部 */
+}
+.fixed-search-box {
+    text-align: center;
+    position: relative;
+}
+.fixed-search-box #fixed-search-input {
+    padding: 0.6rem 1rem;
+    width: 400px;
+    max-width: 70%;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+}
+
+/* 移动端固定搜索栏优化 */
+@media (max-width: 480px) {
+    .fixed-search-box #fixed-search-input {
+        max-width: 60%;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    .fixed-search-box #fixed-search-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+.fixed-search-box #fixed-search-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+.fixed-search-box #fixed-search-btn:hover {
+    background-color: #623a8c;
+}
+.fixed-search-results {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: 0.5rem;
+    /* 隐藏滚动条 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.fixed-search-results::-webkit-scrollbar {
+    display: none;
+}
+.fixed-search-results.show {
+    display: block;
+}
+.joe_container.joe_header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+}
+
+.joe_header__above-logo {
+    display: inline-block;
+}
+
+.joe_header__above-logo img {
+    height: 40px;
+    width: auto;
+    border-radius: 4px;
+}
+
+.joe_header__above-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.joe_header__above-nav .item {
+    display: inline-block;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.joe_header__above-nav .item.current {
+    color: #764ba2;
+    font-weight: bold;
+}
+
+.joe_header__above-nav .item:hover {
+    color: #764ba2;
+    background-color: rgba(118, 75, 162, 0.1);
+}
+
+/* 夜间模式下的导航栏样式 */
+body.dark-mode .joe_container.joe_header_container {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .joe_header__above-nav .item {
+    color: #e0e0e0;
+}
+
+body.dark-mode .joe_header__above-nav .item.current {
+    color: #a78bfa;
+}
+
+body.dark-mode .joe_header__above-nav .item:hover {
+    color: #a78bfa;
+    background-color: rgba(167, 139, 250, 0.1);
+}
+
+.header-content-no-bg {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 70px;
+}
+
+.header-content-no-bg h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.header-content-no-bg p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 夜间模式下的头部样式 */
+body.dark-mode .header-content-no-bg h1 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .header-content-no-bg p {
+    color: #b0b0b0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 夜间模式样式 */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+dark-mode-toggle:hover {
+    background-color: #623a8c;
+}
+
+/* 夜间模式切换按钮悬浮文字 */
+dark-mode-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #764ba2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* 夜间模式下的悬浮文字背景色 */
+body.dark-mode dark-mode-toggle::after {
+    background-color: #553c9a;
+}
+
+dark-mode-toggle:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 回到顶部按钮样式 */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 80px; /* 显示在夜间模式按钮上方 */
+    right: 20px;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem; /* 与夜间模式按钮字体大小一致 */
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top-btn:hover {
+    background-color: #623a8c;
+}
+
+/* 回到顶部按钮悬浮文字 */
+.back-to-top-btn::after {
+    content: '回到顶部';
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #764ba2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.back-to-top-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 夜间模式下的回到顶部按钮悬浮文字 */
+body.dark-mode .back-to-top-btn::after {
+    background-color: #553c9a;
+}
+
+/* 夜间模式下的回到顶部按钮样式 */
+body.dark-mode .back-to-top-btn {
+    background-color: #553c9a;
+}
+
+body.dark-mode .back-to-top-btn:hover {
+    background-color: #432889;
+}
+
+/* 夜间模式下的元素样式 */
+body.dark-mode .fixed-search-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .fixed-search-box #fixed-search-input,
+body.dark-mode #search-input {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .fixed-search-results,
+body.dark-mode .search-results {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .result-item {
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .result-item:hover {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .result-item a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .category {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .site-item {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .site-item:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .site-item .site-icon {
+    background-color: #333;
+    color: #a78bfa;
+}
+
+body.dark-mode .site-item p {
+    color: #aaa;
+}
+
+body.dark-mode footer {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .social-links a:hover {
+    color: #a78bfa;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+header {
+    margin-top: 70px; /* 为导航栏留出空间 */
+    background-size: cover; /* 覆盖整个区域 */
+    background-position: center; /* 居中显示 */
+    background-repeat: no-repeat;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 934px; /* 固定高度934px */
+    width: 100%; /* 宽度保持100% */
+    max-width: 1920px; /* 最大宽度1920px */
+    margin: 0 auto; /* 水平居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.update-section {
+    margin-top: 2rem;
+}
+
+.update-section h2 {
+    font-size: 1.8rem;
+    color: #764ba2;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0e6fa;
+}
+
+.update-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.update-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.update-item h3 {
+    font-size: 1.3rem;
+    color: #764ba2;
+    margin-bottom: 0.8rem;
+}
+
+.update-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 夜间模式下的更新记录样式 */
+body.dark-mode .update-section h2 {
+    color: #a78bfa;
+    border-bottom-color: #2d2d2d;
+}
+
+body.dark-mode .update-item {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .update-item h3 {
+    color: #a78bfa;
+}
+
+body.dark-mode .update-item p {
+    color: #aaa;
+}
+
+/* 波浪SVG样式 */
+.waves-svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 2; /* 确保波浪位于搜索栏上方 */
+    fill: rgba(255, 255, 255, 0.8); /* 波浪颜色，带透明度 */
+    margin-bottom: -5px;
+}
+
+/* 波浪动画 */
+.parallax use {
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/* 夜间模式下的波浪颜色 */
+body.dark-mode .waves-svg {
+    fill: rgba(30, 30, 30, 0.8);
+}
+
+/* 移动端头部优化 */
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 0; /* 减少内边距 */
+        min-height: 150px; /* 减小最小高度 */
+    }
+}
+
+/* 夜间模式下的header样式 */
+body.dark-mode header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.header-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+#main-title, #subtitle {
+    transition: all 0.3s ease;
+}
+.header-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+.search-box {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+#search-input {
+    padding: 0.8rem 1.2rem;
+    width: 400px;
+    max-width: 90%;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-size: 1rem;
+}
+#search-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+#search-btn:hover {
+    background-color: #623a8c;
+}
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 90%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: 0.5rem;
+    /* 隐藏滚动条 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.search-results::-webkit-scrollbar {
+    display: none;
+}
+.search-results.show {
+    display: block;
+}
+.result-item {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.result-item:hover {
+    background-color: #f9f9f9;
+}
+.result-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.category {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.category:hover {
+    transform: translateY(-5px);
+}
+.category h2.category-title {
+    background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+    color: white;
+    padding: 1rem;
+    font-size: 1.5rem;
+    position: relative;
+}
+.category h2.category-title { display: flex; justify-content: space-between; align-items: center; }
+.category h2.category-title span { flex: 1; }
+.category h2.category-title .toggle-btn { background: none; border: none; color: white; font-size: 1rem; cursor: pointer; padding: 0 10px; transition: transform 0.3s ease; }
+.category h2.category-title .toggle-btn.collapsed { transform: rotate(-90deg); }
+.category .site-list {
+    overflow-y: auto;
+    max-height: 500px;
+    transition: max-height 0.3s ease;
+    /* 隐藏滚动条 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.category .site-list::-webkit-scrollbar {
+    display: none;
+}
+
+.category .site-list.collapsed { max-height: 0; overflow-y: hidden; }
+.site-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}
+.site-item {
+    flex: 1 1 calc(25% - 1rem);
+    min-width: 200px;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.site-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-color: #ddd;
+}
+.site-item .site-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #764ba2;
+}
+.site-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+.site-item p {
+    font-size: 0.9rem;
+    color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.social-links {
+    margin-top: 1rem;
+}
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.social-links a:hover {
+    color: #667eea;
+}
+@media (max-width: 768px) {
+    .site-item {
+        flex: 1 1 calc(50% - 1rem);
+    }
+    .header-content h1 {
+        font-size: 2rem;
+    }
+    /* 移动设备上保持滚动条并优化高度 */
+    .category .site-list {
+        max-height: 400px;
+    }
+
+}
+@media (max-width: 480px) {
+    .site-item {
+        flex: 1 1 100%;
+        min-width: 100%; /* 确保在最小屏幕上也能满宽显示 */
+        margin-bottom: 1rem; /* 增加垂直间距 */
+    }
+
+    /* 游戏专区特定优化 */
+    #game-sites {
+        max-height: calc(100vh - 250px); /* 限制最大高度，确保有足够空间显示所有内容 */
+        overflow-y: auto; /* 允许垂直滚动 */
+        -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+    }
+    .header-content h1 {
+        font-size: 1.6rem;
+    }
+    #search-input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    #search-btn {
+        width: 100%;
+        margin-left: 0;
+    }
+    .nav-container {
+        padding: 0 0.5rem; /* 减少水平内边距，增加可用空间 */
+    }
+    .category {
+        margin-bottom: 1.5rem; /* 减少分类之间的间距 */
+    }
+    .site-list {
+        padding: 0.8rem; /* 减少内边距 */
+        gap: 0.8rem; /* 减少间距 */
+    }
+    .site-item h3 {
+        font-size: 1rem; /* 稍微减小标题字体 */
+    }
+    .site-item p {
+        font-size: 0.85rem; /* 稍微减小描述字体 */
+    }
+}
